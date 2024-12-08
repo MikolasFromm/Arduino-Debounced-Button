@@ -111,6 +111,13 @@ public:
         return _pressed;
     }
 
+    /// @brief Returns if the button was pressed in any previous iteration and is still being pressed
+    /// @return bool
+    bool was_pressed()
+    {
+        return _press_reported;
+    }
+
     /// @brief Returns if the button is held for 1sec or more
     /// @return bool
     bool is_short_held()
@@ -145,6 +152,7 @@ public:
 protected:
     ButtonBase(int port) : _port(port) {}
     virtual bool check_current_button_state();
+    virtual void setup_button() = 0;
     int _port;
 private:
     bool _previous_iteration_pressed;
